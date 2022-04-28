@@ -311,7 +311,7 @@ namespace utility::variant::detail {
         }
 
         template <std::size_t i>
-        type_t<i>&& get() & {
+        type_t<i>&& get() && {
             return std::move(get<i>());
         }
 
@@ -323,7 +323,7 @@ namespace utility::variant::detail {
             if (m_id != i) {
                 return nullptr;
             }
-            return std::addressof(get_unchecked<type_t<i>>);
+            return std::addressof(get_unchecked<type_t<i>>());
         }
 
         template <std::size_t i>
